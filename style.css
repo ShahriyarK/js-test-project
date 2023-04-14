@@ -6,8 +6,8 @@
 
 body{
     width:100%;
-    height:100vh;
-    background-color:beige;
+    min-height:100vh;
+    background-color:rgb(230, 224, 236);
 }
 
 .main-box {
@@ -15,35 +15,69 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    color:indigo;
-    height:100%;
+    color:rgb(62, 60, 60);
+    min-height:100vh;
 }
 form{
     width:70%;
     text-align:center;
-    color:indigo;
+    color:rgb(62, 60, 60);
 }
+form input{
+    border-radius:50px;
+    padding:5px;
+    border:1px solid grey;
 
+}
 .space{
     margin-bottom:16px;
-    font-size:30px;
+    font-size:28px;
 }
+button{
+    font-size:25px;
+    border-radius:32px;
+    padding:5px;
+    background-color:rgb(71, 144, 203);
+    border:1px solid blue;
+    color:white;
+}
+button:hover{
+    background-color:orange;
+}
+
 .card{
     width:300px;
-    border: 1px solid violet;
+    border: 2px solid white;
+    background-color:rgb(57, 56, 56);
+    border-radius:16px;
 }
 .card p{
     padding:10px;
     font-size:20px;
+    color:white;
 }
 .card span{
     margin-bottom:10px;
     padding-left:10px;
     font-size:20px;
     font-weight:bold;
+    color:orange;
 }
 
 .card img{
     width:100%;
     object-fit:cover;
+    border-radius:16px;
+    border:none;
+}
+.card-container{
+    display:flex;
+    flex-direction:row;
+    column-gap:16px;
+    padding:20px;
+    margin-left:auto;
+    margin-right:auto;
+    flex-wrap:wrap;
+    row-gap:16px;
+    justify-content:center;
 }

@@ -1,0 +1,49 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100%;
+    height:100vh;
+    background-color:beige;
+}
+
+.main-box {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:indigo;
+    height:100%;
+}
+form{
+    width:70%;
+    text-align:center;
+    color:indigo;
+}
+
+.space{
+    margin-bottom:16px;
+    font-size:30px;
+}
+.card{
+    width:300px;
+    border: 1px solid violet;
+}
+.card p{
+    padding:10px;
+    font-size:20px;
+}
+.card span{
+    margin-bottom:10px;
+    padding-left:10px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.card img{
+    width:100%;
+    object-fit:cover;
+}

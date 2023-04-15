@@ -10,10 +10,10 @@
 
 const search = document.getElementById('search-box');
 // const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
-// const apiKey = '03c16dff40a94fb38083740aae95e62e';
+const apiKey = '03c16dff40a94fb38083740aae95e62e';
 // const apiKey = '5618568abf454ca5994063601ebc4ba2';
 // const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
-const apiKey = '19088892fbf842ec94bf493e139bb3af';
+// const apiKey = '19088892fbf842ec94bf493e139bb3af';
 const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
 let recipeId = '';
@@ -49,14 +49,17 @@ let recipeId = '';
 
 
 
-
+let resultsArray;
 
 form.addEventListener('submit', (event)=>{
+
+    resultsArray = [];
     event.preventDefault();
     const cardDivs = document.querySelectorAll('.card');
     console.log(cardDivs);
     removePrevious(cardDivs);
     let query = search.value;
+    let check = checkCache(query);
     // console.log(query);
     fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${query}`)
     .then(response => response.json())
@@ -88,6 +91,9 @@ form.addEventListener('submit', (event)=>{
             nameSpan.innerText = 'Name:'
             ingrSpan.innerText = 'Ingredients:'
             namePara.innerText = element.title;
+
+
+
             button.addEventListener('click', showRecipe);
             image.setAttribute('src', imgSource)
             fetch(`https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=${apiKey}`)
@@ -99,6 +105,9 @@ form.addEventListener('submit', (event)=>{
                     ingredients.push(object.name);
                 })
                 ingrPara.innerText = ingredients.join(', ')
+                let foodItem = {image:imgSource, name:element.title, ingredients:ingredients}
+                resultsArray.push(foodItem);
+                localStorage.setItem(query, JSON.stringify(resultsArray));
             })
         })
     })
@@ -131,7 +140,7 @@ function removePrevious(elmCollection) {
     }
 }
 
-function showRecipe() {
+function showRecipe(event) {
         let elm = event.target;
         let paraIngr = elm.previousElementSibling;
         let headIngr = paraIngr.previousElementSibling;
@@ -151,3 +160,11 @@ function showRecipe() {
             document.getElementById('title').innerText = title.innerText;
         })
 }
+
+
+// function checkCache(search) {
+
+// }
+
+
+

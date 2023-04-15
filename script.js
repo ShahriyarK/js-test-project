@@ -26,23 +26,20 @@ form.addEventListener('submit', (event)=>{
     removePrevious(cardDivs);
     let query = search.value;
     let check = checkCache(query);
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${query}`)
-    .then(response => response.json())
-    .then(data => data.results)
-    .then(array => {
-
-        if (check) {
-            console.log("Yayyyy")
-            let localArray = JSON.parse(localStorage.getItem(check));
-            localArray.forEach(element => {
-                let ingrPara = addCards(element);
-                let recipeId = element.id;
-                let imgSource = element.image;
-                let ingredients = element.ingredients;
-                ingrPara.innerText = ingredients.join(', ');
-            })
-        }
-        else {
+    if (check) {
+        console.log("Yayyyy")
+        let localArray = JSON.parse(localStorage.getItem(check));
+        localArray.forEach(element => {
+            let ingrPara = addCards(element);
+            let ingredients = element.ingredients;
+            ingrPara.innerText = ingredients.join(', ');
+        })
+    }
+    else {
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${query}`)
+        .then(response => response.json())
+        .then(data => data.results)
+        .then(array => {
             console.log('BOOOO')
             array.forEach(element => {
                 let ingrPara = addCards(element);
@@ -62,8 +59,8 @@ form.addEventListener('submit', (event)=>{
                     localStorage.setItem(query, JSON.stringify(resultsArray));
                 })
             })
-        }
-    })
+        })
+    }
 })
 
 function removePrevious(elmCollection) {

@@ -9,7 +9,20 @@ body{
     min-height:100vh;
     background-color:rgb(230, 224, 236);
 }
-
+.btn-form{
+    font-size:25px;
+    border-radius:32px;
+    padding:5px;
+    background-color:rgb(71, 144, 203);
+    border:1px solid blue;
+    color:white;
+}
+.btn-form:hover{
+    background-color:orange;
+}
+.recipe-details{
+    display:none;
+}
 .main-box {
     display:flex;
     flex-direction:column;
@@ -33,28 +46,24 @@ form input{
     margin-bottom:16px;
     font-size:28px;
 }
-button{
-    font-size:25px;
-    border-radius:32px;
-    padding:5px;
-    background-color:rgb(71, 144, 203);
-    border:1px solid blue;
-    color:white;
-}
-button:hover{
-    background-color:orange;
-}
+
 
 .card{
     width:300px;
     border: 2px solid white;
     background-color:rgb(57, 56, 56);
     border-radius:16px;
+    padding-bottom:15px;
 }
 .card p{
     padding:10px;
     font-size:20px;
     color:white;
+    max-height:200px;
+    overflow:hidden;
+    box-sizing:content-box;
+    line-height: 1.2;
+    margin-bottom:10px;
 }
 .card span{
     margin-bottom:10px;
@@ -80,4 +89,20 @@ button:hover{
     flex-wrap:wrap;
     row-gap:16px;
     justify-content:center;
+}
+
+.btn{
+    border:none;
+    color:orange;
+    font-weight:bold;
+    background-color:rgb(62, 60, 60);
+    font-size:16px;
+    margin-bottom:16px;
+    width:100%;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+.btn:hover{
+    cursor: pointer;
 }

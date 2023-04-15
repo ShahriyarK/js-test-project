@@ -9,8 +9,11 @@
 
 
 const search = document.getElementById('search-box');
-const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
+// const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
+// const apiKey = '03c16dff40a94fb38083740aae95e62e';
 // const apiKey = '5618568abf454ca5994063601ebc4ba2';
+// const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
+const apiKey = '19088892fbf842ec94bf493e139bb3af';
 const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
 let recipeId = '';
@@ -65,9 +68,11 @@ form.addEventListener('submit', (event)=>{
             let recipeId = element.id;
             document.querySelector('.card-container').append(card);
             card.setAttribute('class','card')
+
             let image = document.createElement('img');
             card.append(image);
             let nameSpan = document.createElement('span');
+            card.setAttribute('value', recipeId);
             card.append(nameSpan);
             let namePara = document.createElement('p');
             card.append(namePara);
@@ -75,9 +80,15 @@ form.addEventListener('submit', (event)=>{
             card.append(ingrSpan);
             let ingrPara = document.createElement('p');
             card.append(ingrPara);
+            let button = document.createElement('button');
+            card.append(button);
+            button.setAttribute('class', 'btn');
+            button.setAttribute('href', 'recipe-details.html')
+            button.innerText = 'Learn complete recipe'
             nameSpan.innerText = 'Name:'
             ingrSpan.innerText = 'Ingredients:'
             namePara.innerText = element.title;
+            button.addEventListener('click', showRecipe);
             image.setAttribute('src', imgSource)
             fetch(`https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=${apiKey}`)
             .then(response => response.json())
@@ -92,8 +103,13 @@ form.addEventListener('submit', (event)=>{
         })
     })
 
+// function getRecipe(event) {
+//     let card = event.target;
+//     console.log(card);
+//     return true;
+// }
 
-    
+
 
     // .then(data => console.log(data.results[0]))
     // .then(display => document.getElementById('recipe').innerText = display)
@@ -113,4 +129,25 @@ function removePrevious(elmCollection) {
         elmCollection.forEach(element => element.remove());
         return true;
     }
+}
+
+function showRecipe() {
+        let elm = event.target;
+        let paraIngr = elm.previousElementSibling;
+        let headIngr = paraIngr.previousElementSibling;
+        let paraTitle = headIngr.previousElementSibling;
+        let title = paraTitle.previousElementSibling;
+        let cardDiv = elm.parentElement;
+        let recipeId = cardDiv.getAttribute('value');
+
+        fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.recipe-details').style.display = 'block';
+            document.querySelector('.main-box').style.display = 'none';
+            document.getElementById('summary').innerHTML = data.summary;
+            document.getElementById('instructions').innerHTML = data.instructions;
+            document.getElementById('ingredients').innerText = paraIngr.innerText;
+            document.getElementById('title').innerText = title.innerText;
+        })
 }

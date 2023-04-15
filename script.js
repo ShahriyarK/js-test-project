@@ -9,14 +9,14 @@
 
 
 const search = document.getElementById('search-box');
-// const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
-const apiKey = '03c16dff40a94fb38083740aae95e62e';
+const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
+// const apiKey = '03c16dff40a94fb38083740aae95e62e';
 // const apiKey = '5618568abf454ca5994063601ebc4ba2';
 // const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
 // const apiKey = '19088892fbf842ec94bf493e139bb3af';
 const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
-let recipeId = '';
+// let recipeId = '';
 
 // localStorage.setItem('1','value');
 // The above code works which means that we increment the key values and store the queries in individual keys.
@@ -59,43 +59,46 @@ form.addEventListener('submit', (event)=>{
     console.log(cardDivs);
     removePrevious(cardDivs);
     let query = search.value;
-    let check = checkCache(query);
+    // let check = checkCache(query);
+    // let recipeId = '';
     // console.log(query);
     fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${query}`)
     .then(response => response.json())
     .then(data => data.results)
     .then(array => {
         array.forEach(element => {
-            let card = document.createElement('div');
-            let imgSource = element.image;
-            let recipeId = element.id;
-            document.querySelector('.card-container').append(card);
-            card.setAttribute('class','card')
+            let returnArray = addCards(element);
+            // let card = document.createElement('div');
+            // let imgSource = element.image;
+            // let recipeId = element.id;
+            // document.querySelector('.card-container').append(card);
+            // card.setAttribute('class','card')
 
-            let image = document.createElement('img');
-            card.append(image);
-            let nameSpan = document.createElement('span');
-            card.setAttribute('value', recipeId);
-            card.append(nameSpan);
-            let namePara = document.createElement('p');
-            card.append(namePara);
-            let ingrSpan = document.createElement('span');
-            card.append(ingrSpan);
-            let ingrPara = document.createElement('p');
-            card.append(ingrPara);
-            let button = document.createElement('button');
-            card.append(button);
-            button.setAttribute('class', 'btn');
-            button.setAttribute('href', 'recipe-details.html')
-            button.innerText = 'Learn complete recipe'
-            nameSpan.innerText = 'Name:'
-            ingrSpan.innerText = 'Ingredients:'
-            namePara.innerText = element.title;
+            // let image = document.createElement('img');
+            // card.append(image);
+            // let nameSpan = document.createElement('span');
+            // card.setAttribute('value', recipeId);
+            // card.append(nameSpan);
+            // let namePara = document.createElement('p');
+            // card.append(namePara);
+            // let ingrSpan = document.createElement('span');
+            // card.append(ingrSpan);
+            // let ingrPara = document.createElement('p');
+            // card.append(ingrPara);
+            // let button = document.createElement('button');
+            // card.append(button);
+            // button.setAttribute('class', 'btn');
+            // button.setAttribute('href', 'recipe-details.html')
+            // button.innerText = 'Learn complete recipe'
+            // nameSpan.innerText = 'Name:'
+            // ingrSpan.innerText = 'Ingredients:'
+            // namePara.innerText = element.title;
+            // console.log(button);
+            let recipeId = returnArray[0];
+            let ingrPara = returnArray[1];
 
-
-
-            button.addEventListener('click', showRecipe);
-            image.setAttribute('src', imgSource)
+            // button.addEventListener('click', showRecipe);
+            // image.setAttribute('src', imgSource)
             fetch(`https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=${apiKey}`)
             .then(response => response.json())
             .then(data => data.ingredients)
@@ -167,4 +170,32 @@ function showRecipe(event) {
 // }
 
 
+function addCards (object) {
+    let card = document.createElement('div');
+    let imgSource = object.image;
+    let recipeId = object.id;
+    document.querySelector('.card-container').append(card);
+    card.setAttribute('class','card')
 
+    let image = document.createElement('img');
+    card.append(image);
+    let nameSpan = document.createElement('span');
+    card.setAttribute('value', recipeId);
+    card.append(nameSpan);
+    let namePara = document.createElement('p');
+    card.append(namePara);
+    let ingrSpan = document.createElement('span');
+    card.append(ingrSpan);
+    let ingrPara = document.createElement('p');
+    card.append(ingrPara);
+    let button = document.createElement('button');
+    card.append(button);
+    button.setAttribute('class', 'btn');
+    image.setAttribute('src', imgSource)
+    button.innerText = 'Learn complete recipe'
+    nameSpan.innerText = 'Name:'
+    ingrSpan.innerText = 'Ingredients:'
+    namePara.innerText = object.title;
+    button.addEventListener('click', showRecipe);
+    return [recipeId, ingrPara];
+}

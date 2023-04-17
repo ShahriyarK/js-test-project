@@ -5,15 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>All about food</title>
 </head>
 <body>
+    <div class="header">
+        <i class="fa fa-globe fa-2x"></i>
+        <h1>Food Library</h1>
+    </div>
     <div class="main-box">
         <form>
-            <h1 class="space">Food Cuisine</h1>
-            <p class="space">Discover a world of flavors</p>
-            <input class="space" type="text" id="search-box" placeholder="Your search text here">
+            <h1 class="space">Find the perfect meal for any occasion...</h1>
+            <p class="space">And discover a world of flavors</p>
+            <input type="text" id="search-box" placeholder="Please enter your search" required>
             <button type="submit" class="btn-form ">Search</button>
+            <p id="error"></p>
         </form>
         <div class="card-container">
         </div>

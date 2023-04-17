@@ -7,6 +7,14 @@
 
 
 
+// ----------PENDING STUFF PENDING STUFF PENDING STUFF---------
+// 1. Add caching to additional information as well
+// 2. Add decent styling and make responsive
+// 3. Add random recipes on start
+// 4. Add error handling (DONE)
+// 5. Try storing data in only one key value pair in local storage. The value could be an object or list of objects with key name
+// same as the name of the query
+
 
 const search = document.getElementById('search-box');
 // const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
@@ -19,16 +27,22 @@ const form = document.querySelector('form');
 
 let resultsArray;
 
+
+
+
+
 form.addEventListener('submit', (event)=>{
     resultsArray = [];
+
     event.preventDefault();
     const cardDivs = document.querySelectorAll('.card');
     removePrevious(cardDivs);
     let query = search.value;
-    let check = checkCache(query);
-    if (check) {
+    // enableSearch(query);
+    let checkLocal = checkCache(query);
+    if (checkLocal) {
         console.log("Yayyyy")
-        let localArray = JSON.parse(localStorage.getItem(check));
+        let localArray = JSON.parse(localStorage.getItem(checkLocal));
         localArray.forEach(element => {
             let ingrPara = addCards(element);
             let ingredients = element.ingredients;
@@ -37,7 +51,10 @@ form.addEventListener('submit', (event)=>{
     }
     else {
         fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${query}`)
-        .then(response => response.json())
+        .then(response => {
+            handleError(response);
+            return response.json()
+        })
         .then(data => data.results)
         .then(array => {
             console.log('BOOOO')
@@ -46,7 +63,10 @@ form.addEventListener('submit', (event)=>{
                 let recipeId = element.id;
                 let imgSource = element.image;
                 fetch(`https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=${apiKey}`)
-                .then(response => response.json())
+                .then(response => {
+                    handleError(response);
+                    return response.json()
+                })
                 .then(data => data.ingredients)
                 .then(array => {
                     let ingredients = [];
@@ -79,7 +99,10 @@ function showRecipe(event) {
     let recipeId = cardDiv.getAttribute('value');
 
     fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`)
-    .then(response => response.json())
+    .then(response => {
+        handleError(response);
+        return response.json()
+    })
     .then(data => {
         document.querySelector('.recipe-details').style.display = 'block';
         document.querySelector('.main-box').style.display = 'none';
@@ -125,10 +148,19 @@ function addCards (object) {
     card.append(button);
     button.setAttribute('class', 'btn');
     image.setAttribute('src', imgSource)
-    button.innerText = 'Learn complete recipe'
+    button.innerText = 'Click for more information'
     nameSpan.innerText = 'Name:'
     ingrSpan.innerText = 'Ingredients:'
     namePara.innerText = object.title;
     button.addEventListener('click', showRecipe);
     return ingrPara;
+}
+
+
+function handleError(apiResponse) {
+    if (apiResponse.ok) {
+        document.getElementById('error').innerText = '';
+    } else {
+        document.getElementById('error').innerText = 'Failed to retrieve data';
+    }
 }

@@ -2,19 +2,32 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body{
     width:100%;
     min-height:100vh;
-    background-color:rgb(230, 224, 236);
+    background-color:white;
+    position:relative;
 }
+.header {
+    display:flex;
+    justify-content:space-evenly;
+    width:380px;
+    align-items:center;
+    padding-top:30px;
+    padding-left:30px;
+    font-size:22px;
+}
+
 .btn-form{
-    font-size:25px;
+    font-size:18px;
     border-radius:32px;
-    padding:5px;
-    background-color:rgb(71, 144, 203);
-    border:1px solid blue;
+    padding: 10px 20px;
+    /* background-color:rgb(71, 144, 203); */
+    background-color:rgb(98, 91, 91);
+    border:1px solid black;
     color:white;
 }
 .btn-form:hover{
@@ -30,6 +43,10 @@ body{
     align-items:center;
     color:rgb(62, 60, 60);
     min-height:100vh;
+    /* position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%); */
 }
 form{
     width:70%;
@@ -38,9 +55,13 @@ form{
 }
 form input{
     border-radius:50px;
-    padding:5px;
+    padding: 10px 20px;
     border:1px solid grey;
-
+    font-size:20px;
+    width:500px;
+}
+form input::placeholder{
+    font-size:18px;
 }
 .space{
     margin-bottom:16px;
@@ -50,54 +71,68 @@ form input{
 
 .card{
     width:300px;
-    border: 2px solid white;
-    background-color:rgb(57, 56, 56);
-    border-radius:16px;
+    display:flex;
+    flex-direction:column;
+    border: 1px solid rgb(153, 150, 150);
+    background-color:white;
+    /* border-radius:16px; */
     padding-bottom:15px;
+    min-height:400px;
 }
+
 .card p{
-    padding:10px;
-    font-size:20px;
-    color:white;
-    max-height:200px;
-    overflow:hidden;
+    /* flex:1; */
+    max-height: 115px;
+    padding-left:10px;
+    font-size:16px;
+    color:black;
+    /* max-height:200px; */
     box-sizing:content-box;
     line-height: 1.2;
     margin-bottom:10px;
 }
+.card p:last-of-type{
+    flex:1;
+    overflow:hidden;
+}
 .card span{
-    margin-bottom:10px;
+    margin-bottom:5px;
+    /* flex:1; */
     padding-left:10px;
-    font-size:20px;
+    font-size:16px;
     font-weight:bold;
-    color:orange;
+    color:#FF6000;
 }
 
 .card img{
     width:100%;
     object-fit:cover;
-    border-radius:16px;
+    height:300px;
+    /* flex:1; */
+    /* border-radius:16px; */
     border:none;
 }
 .card-container{
     display:flex;
     flex-direction:row;
-    column-gap:16px;
+    column-gap:50px;
     padding:20px;
     margin-left:auto;
     margin-right:auto;
     flex-wrap:wrap;
-    row-gap:16px;
+    row-gap:50px;
     justify-content:center;
 }
 
 .btn{
     border:none;
-    color:orange;
+    /* flex:1; */
+    margin-top:auto;
+    color:#454545;
     font-weight:bold;
-    background-color:rgb(62, 60, 60);
+    background-color:white;
     font-size:16px;
-    margin-bottom:16px;
+    /* margin-bottom:16px; */
     width:100%;
     text-align:center;
     margin-left:auto;
@@ -105,6 +140,10 @@ form input{
 }
 .btn:hover{
     cursor: pointer;
+}
+#error{
+    font-size:24px;
+    color:red;
 }
 
 /* MAYBE LIMIT PARAGRAPH HEIGHT AND ADD SCROLLBAR FOR EACH PARA? */

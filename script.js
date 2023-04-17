@@ -14,6 +14,7 @@
 // 4. Add error handling (DONE)
 // 5. Try storing data in only one key value pair in local storage. The value could be an object or list of objects with key name
 // same as the name of the query
+// 6. Maybe try to limit 3 cards in one row.
 
 
 const search = document.getElementById('search-box');
@@ -26,9 +27,6 @@ const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
 
 let resultsArray;
-
-
-
 
 
 form.addEventListener('submit', (event)=>{

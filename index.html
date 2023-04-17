@@ -13,13 +13,16 @@
 </head>
 <body>
     <div class="header">
-        <i class="fa fa-globe fa-2x"></i>
-        <h1>Food Library</h1>
+        <div class="logo">
+            <i class="fa fa-globe fa-2x"></i>
+            <h1>Food Library</h1>
+        </div>
+        <a href="index.html">Go to Home Page</a>
     </div>
     <div class="main-box">
         <form>
             <h1 class="space">Find the perfect meal for any occasion...</h1>
-            <p class="space">And discover a world of flavors</p>
+            <p class="space">And discover a world of flavors.</p>
             <input type="text" id="search-box" placeholder="Please enter your search" required>
             <button type="submit" class="btn-form ">Search</button>
             <p id="error"></p>
@@ -28,13 +31,14 @@
         </div>
     </div>
     <div class="recipe-details">
-        <h1>Recipe Name</h1>
-        <p id="title"></p>
-        <h2>Recipe Ingredients</h2>
+        <!-- <h2>Recipe Name</h2> -->
+        <h2 id="title"></h2>
+        <img>
+        <h2 class="recipe-info">Recipe Ingredients</h2>
         <p id="ingredients"></p>
-        <h2>Recipe Summary</h2>
+        <h2 class="recipe-info">Recipe Summary</h2>
         <p id="summary"></p>
-        <h2>Instructions</h2>
+        <h2 class="recipe-info">Instructions</h2>
         <p id="instructions"></p>
     </div>
     <script src="script.js"></script>

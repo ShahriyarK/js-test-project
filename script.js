@@ -35,6 +35,8 @@ form.addEventListener('submit', (event)=>{
     resultsArray = [];
 
     event.preventDefault();
+    document.querySelector('form h1').style.display = 'none';
+    document.querySelector('form p').style.display = 'none';
     const cardDivs = document.querySelectorAll('.card');
     removePrevious(cardDivs);
     let query = search.value;
@@ -107,6 +109,7 @@ function showRecipe(event) {
         document.querySelector('.recipe-details').style.display = 'block';
         document.querySelector('.main-box').style.display = 'none';
         document.getElementById('summary').innerHTML = data.summary;
+        document.querySelector('.recipe-details img').setAttribute('src',data.image);
         document.getElementById('instructions').innerHTML = data.instructions;
         document.getElementById('ingredients').innerText = paraIngr.innerText;
         document.getElementById('title').innerText = paraTitle.innerText;
@@ -149,8 +152,8 @@ function addCards (object) {
     button.setAttribute('class', 'btn');
     image.setAttribute('src', imgSource)
     button.innerText = 'Click for more information'
-    nameSpan.innerText = 'Name:'
-    ingrSpan.innerText = 'Ingredients:'
+    nameSpan.innerText = 'Recipe Name'
+    ingrSpan.innerText = 'Ingredients'
     namePara.innerText = object.title;
     button.addEventListener('click', showRecipe);
     return ingrPara;

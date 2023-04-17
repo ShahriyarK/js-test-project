@@ -9,9 +9,10 @@ body{
     width:100%;
     min-height:100vh;
     background-color:white;
-    position:relative;
+    display:flex;
+    flex-direction:column;
 }
-.header {
+.logo {
     display:flex;
     justify-content:space-evenly;
     width:380px;
@@ -19,8 +20,26 @@ body{
     padding-top:30px;
     padding-left:30px;
     font-size:22px;
-}
 
+}
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color: rgb(62, 60, 60);
+}
+a {
+    padding-top:30px;
+    padding-right:30px;
+    font-size:22px;
+    /* color: rgb(62, 60, 60); */
+    color: #FFA559;
+    text-decoration:none;
+    font-weight:500
+}
+a:hover{
+    color:#FF6000;
+}
 .btn-form{
     font-size:18px;
     border-radius:32px;
@@ -31,7 +50,7 @@ body{
     color:white;
 }
 .btn-form:hover{
-    background-color:orange;
+    background-color:#FF6000;
 }
 .recipe-details{
     display:none;
@@ -42,7 +61,8 @@ body{
     justify-content:center;
     align-items:center;
     color:rgb(62, 60, 60);
-    min-height:100vh;
+    flex:1;
+    width:100%;
     /* position:absolute;
     top:50%;
     left:50%;
@@ -73,23 +93,25 @@ form input::placeholder{
     width:300px;
     display:flex;
     flex-direction:column;
-    border: 1px solid rgb(153, 150, 150);
+    /* border: 1px solid rgb(153, 150, 150); */
     background-color:white;
     /* border-radius:16px; */
     padding-bottom:15px;
     min-height:400px;
+    box-shadow: 0 0 10px 2px;
 }
 
 .card p{
     /* flex:1; */
     max-height: 115px;
-    padding-left:10px;
+    padding:0px 10px;
     font-size:16px;
-    color:black;
+    color:rgb(62, 60, 60);
     /* max-height:200px; */
     box-sizing:content-box;
     line-height: 1.2;
     margin-bottom:10px;
+    text-align:justify;
 }
 .card p:last-of-type{
     flex:1;
@@ -108,6 +130,7 @@ form input::placeholder{
     width:100%;
     object-fit:cover;
     height:300px;
+    margin-bottom:8px;
     /* flex:1; */
     /* border-radius:16px; */
     border:none;
@@ -116,7 +139,7 @@ form input::placeholder{
     display:flex;
     flex-direction:row;
     column-gap:50px;
-    padding:20px;
+    padding:50px 20px;
     margin-left:auto;
     margin-right:auto;
     flex-wrap:wrap;
@@ -140,6 +163,7 @@ form input::placeholder{
 }
 .btn:hover{
     cursor: pointer;
+    color:#FF6000;
 }
 #error{
     font-size:24px;
@@ -147,3 +171,33 @@ form input::placeholder{
 }
 
 /* MAYBE LIMIT PARAGRAPH HEIGHT AND ADD SCROLLBAR FOR EACH PARA? */
+
+.recipe-details{
+    padding:50px 50px;
+    text-align:justify;
+    color:rgb(62, 60, 60);
+}
+
+.recipe-details p{
+    margin-bottom:10px;
+    font-size:20px;
+    color:rgb(62, 60, 60);
+}
+
+.recipe-details img{
+    box-shadow: 0 0 2px 2px rgb(110, 108, 108);
+}
+
+#title{
+    font-size:32px;
+    margin-bottom:10px;
+    font-weight:600;
+}
+.recipe-info{
+    color:#FF6000;
+    font-weight:600;
+}
+.recipe-details img{
+    margin-bottom:16px;
+    object-fit: fill;
+}

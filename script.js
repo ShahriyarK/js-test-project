@@ -19,8 +19,8 @@
 
 const search = document.getElementById('search-box');
 // const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
-// const apiKey = '03c16dff40a94fb38083740aae95e62e';
-const apiKey = '5618568abf454ca5994063601ebc4ba2';
+const apiKey = '03c16dff40a94fb38083740aae95e62e';
+// const apiKey = '5618568abf454ca5994063601ebc4ba2';
 // const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
 // const apiKey = '19088892fbf842ec94bf493e139bb3af';
 const cardBox = document.querySelector('.card-container');
@@ -28,7 +28,10 @@ const form = document.querySelector('form');
 
 let resultsArray;
 fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`)
-.then(response => response.json())
+.then(response => {
+    handleError(response);
+    return response.json()
+})
 .then(data => data.recipes)
 .then(array => {
     document.querySelector('.search-title').innerText = `Popular Recipes`
@@ -44,14 +47,15 @@ fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`)
 
 form.addEventListener('submit', (event)=>{
     resultsArray = [];
-
+        document.querySelector('.recipe-details').style.display = 'none';
+        document.querySelector('.card-container').style.display = 'flex';
     event.preventDefault();
     // document.querySelector('form h1').style.display = 'none';
     // document.querySelector('form p').style.display = 'none';
     const cardDivs = document.querySelectorAll('.card');
     removePrevious(cardDivs);
     let query = search.value;
-    document.querySelector('.search-title').innerText = '';
+    // document.querySelector('.search-title').innerText = '';
     // enableSearch(query);
     let checkLocal = checkCache(query);
     if (checkLocal) {
@@ -74,6 +78,8 @@ form.addEventListener('submit', (event)=>{
         .then(data => data.results)
         .then(array => {
             console.log('BOOOO')
+            let count = array.length;
+            document.querySelector('.search-title').innerText = `${query} (${count} results)`
             array.forEach(element => {
                 let ingrPara = addCards(element);
                 let recipeId = element.id;
@@ -114,7 +120,12 @@ function showRecipe(event) {
     let paraTitle = headIngr.previousElementSibling;
     let cardDiv = elm.parentElement;
     let recipeId = cardDiv.getAttribute('value');
-
+    document.getElementById('back-btn').style.display = 'block';
+    document.getElementById('back-btn').addEventListener('click', () => {
+        cardBox.style.display = 'flex';
+        document.querySelector('.recipe-details').style.display = 'none';
+        document.querySelector('.search-title').innerText = search.value;
+    })
     fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`)
     .then(response => {
         handleError(response);
@@ -123,12 +134,13 @@ function showRecipe(event) {
     .then(data => {
         document.querySelector('.recipe-details').style.display = 'block';
         document.querySelector('.card-container').style.display = 'none';
-        document.querySelector('.search-title').style.display = 'none';
+        // document.querySelector('.search-title').style.display = 'none';
         document.getElementById('summary').innerHTML = data.summary;
         document.querySelector('.recipe-details img').setAttribute('src',data.image);
         document.getElementById('instructions').innerHTML = data.instructions;
         document.getElementById('ingredients').innerText = paraIngr.innerText;
-        document.getElementById('title').innerText = paraTitle.innerText;
+        // document.getElementById('title').innerText = paraTitle.innerText;
+        document.querySelector('.search-title').innerText = paraTitle.innerText;
     })
 }
 
@@ -180,6 +192,6 @@ function handleError(apiResponse) {
     if (apiResponse.ok) {
         document.getElementById('error').innerText = '';
     } else {
-        document.getElementById('error').innerText = 'Failed to retrieve data';
+        document.getElementById('error').innerText = 'Failed to retrieve complete data';
     }
 }

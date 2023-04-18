@@ -27,22 +27,38 @@ const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
 
 let resultsArray;
-
+fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`)
+.then(response => response.json())
+.then(data => data.recipes)
+.then(array => {
+    document.querySelector('.search-title').innerText = `Popular Recipes`
+    let ingredients = [];
+    array.forEach(element => {
+        let ingrPara = addCards(element);
+        element.extendedIngredients.forEach(element => {
+            ingredients.push(element.name);
+        })
+        ingrPara.innerText = ingredients.join(', ');
+    })
+});
 
 form.addEventListener('submit', (event)=>{
     resultsArray = [];
 
     event.preventDefault();
-    document.querySelector('form h1').style.display = 'none';
-    document.querySelector('form p').style.display = 'none';
+    // document.querySelector('form h1').style.display = 'none';
+    // document.querySelector('form p').style.display = 'none';
     const cardDivs = document.querySelectorAll('.card');
     removePrevious(cardDivs);
     let query = search.value;
+    document.querySelector('.search-title').innerText = '';
     // enableSearch(query);
     let checkLocal = checkCache(query);
     if (checkLocal) {
         console.log("Yayyyy")
         let localArray = JSON.parse(localStorage.getItem(checkLocal));
+        let count = localArray.length;
+        document.querySelector('.search-title').innerText = `${query} (${count} results)`
         localArray.forEach(element => {
             let ingrPara = addCards(element);
             let ingredients = element.ingredients;
@@ -86,6 +102,7 @@ form.addEventListener('submit', (event)=>{
 function removePrevious(elmCollection) {
     if (elmCollection.length > 0) {
         elmCollection.forEach(element => element.remove());
+        document.querySelector('.search-title').innerText = '';
         return true;
     }
 }
@@ -105,7 +122,8 @@ function showRecipe(event) {
     })
     .then(data => {
         document.querySelector('.recipe-details').style.display = 'block';
-        document.querySelector('.main-box').style.display = 'none';
+        document.querySelector('.card-container').style.display = 'none';
+        document.querySelector('.search-title').style.display = 'none';
         document.getElementById('summary').innerHTML = data.summary;
         document.querySelector('.recipe-details img').setAttribute('src',data.image);
         document.getElementById('instructions').innerHTML = data.instructions;

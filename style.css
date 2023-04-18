@@ -12,56 +12,79 @@ body{
     display:flex;
     flex-direction:column;
 }
-.logo {
-    display:flex;
-    justify-content:space-evenly;
-    width:380px;
-    align-items:center;
-    padding-top:30px;
-    padding-left:30px;
-    font-size:22px;
-
-}
-.header{
+/* .header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    color: rgb(62, 60, 60);
+    color: #323232;
+} */
+.logo {
+    display:flex;
+    justify-content:space-evenly;
+    width:300px;
+    align-items:center;
+    padding-top:20px;
+    padding-left:40px;
+    font-size:16px;
 }
-a {
-    padding-top:30px;
-    padding-right:30px;
+#food-logo{
+    color:#e00707;
+}
+.search-title::before{
+    content:'';
+    margin-bottom:10px;
+    border:1px solid rgb(243, 238, 238);
+    display:block;
+}
+/* a {
+    padding-top:20px;
+    padding-right:20px;
     font-size:22px;
-    /* color: rgb(62, 60, 60); */
+
     color: #FFA559;
     text-decoration:none;
     font-weight:500
 }
 a:hover{
     color:#FF6000;
+} */
+
+#logo-link{
+    text-decoration:none;
+    width:100%;
+    color: #323232;
+    display:flex;
+}
+.search-div{
+    display:flex;
+    justify-content:center;
 }
 .btn-form{
     font-size:18px;
-    border-radius:32px;
+    height:52px;
+    /* border-radius:32px; */
     padding: 10px 20px;
-    /* background-color:rgb(71, 144, 203); */
-    background-color:rgb(98, 91, 91);
-    border:1px solid black;
+    background-color:#e00707;
+    /* background-color:rgb(98, 91, 91); */
+    /* border:1px solid black; */
+    border:1px solid #e00707;
+    border-radius:0 5px 5px 0;
     color:white;
 }
 .btn-form:hover{
-    background-color:#FF6000;
+    background-color:#323232;
 }
 .recipe-details{
     display:none;
 }
 .main-box {
     display:flex;
-    flex-direction:column;
-    justify-content:center;
+    flex-direction:row;
+    /* justify-content:center; */
     align-items:center;
+    justify-content:space-between;
     color:rgb(62, 60, 60);
-    flex:1;
+    /* flex:1; */
     width:100%;
     /* position:absolute;
     top:50%;
@@ -72,23 +95,33 @@ form{
     width:70%;
     text-align:center;
     color:rgb(62, 60, 60);
+    align-self:flex-end;
 }
 form input{
-    border-radius:50px;
+    /* border-radius:50px; */
     padding: 10px 20px;
     border:1px solid grey;
     font-size:20px;
     width:500px;
+    border:none;
+    box-shadow:0 0 10px -6px;
 }
 form input::placeholder{
     font-size:18px;
+}
+form input:focus-visible{
+    outline:none;
+    box-shadow:0 0 10px -2px;
 }
 .space{
     margin-bottom:16px;
     font-size:28px;
 }
 
-
+.search-title{
+    text-align:center;
+    Margin-top:30px;
+}
 .card{
     width:350px;
     display:flex;
@@ -123,13 +156,14 @@ form input::placeholder{
     padding-left:10px;
     font-size:16px;
     font-weight:bold;
-    color:#FF6000;
+    /* color:#FF6000; */
+    color:#e00707;
 }
 
 .card img{
     width:100%;
     object-fit:cover;
-    height:300px;
+    height:260px;
     margin-bottom:8px;
     /* flex:1; */
     /* border-radius:16px; */
@@ -139,7 +173,7 @@ form input::placeholder{
     display:flex;
     flex-direction:row;
     column-gap:80px;
-    padding:50px 20px;
+    padding:20px 20px;
     margin-left:auto;
     margin-right:auto;
     flex-wrap:wrap;
@@ -151,7 +185,7 @@ form input::placeholder{
     border:none;
     /* flex:1; */
     margin-top:auto;
-    color:#454545;
+    color:#323232;
     font-weight:bold;
     background-color:white;
     font-size:16px;
@@ -163,7 +197,8 @@ form input::placeholder{
 }
 .btn:hover{
     cursor: pointer;
-    color:#FF6000;
+    /* color:#FF6000; */
+    color:#e00707;
 }
 #error{
     font-size:24px;
@@ -194,7 +229,7 @@ form input::placeholder{
     font-weight:600;
 }
 .recipe-info{
-    color:#FF6000;
+    color:#e00707;
     font-weight:600;
 }
 .recipe-details img{

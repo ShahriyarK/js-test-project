@@ -1,15 +1,16 @@
+**Objective**
 *The recipe app should fetch recipes and displays them as cards on a web page*
 Features:
-        1. Users searches by recipe name.
-        2. The app fetches the recipe and displays it in a card
-        3. Each card displays recipe name, ingredients and image.
-        4. Users can click on a button on recipe card to view the full recipe and its instructions.
+1. Users searches by recipe name.
+2. The app fetches the recipe and displays it in a card
+3. Each card displays recipe name, ingredients and image.
+4. Users can click on a button on recipe card to view the full recipe and its instructions.
 
-List of api keys that can be used in case, daily limit of 150 is reached:
-    1. const apiKey = '03c16dff40a94fb38083740aae95e62e';
-    2. const apiKey = '5618568abf454ca5994063601ebc4ba2';
-    3. const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
-    4. const apiKey = '19088892fbf842ec94bf493e139bb3af';
+List of api keys that can be used in case the daily limit of 150 hits is reached:
+1. const apiKey = '03c16dff40a94fb38083740aae95e62e';
+2. const apiKey = '5618568abf454ca5994063601ebc4ba2';
+3. const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
+4. const apiKey = '19088892fbf842ec94bf493e139bb3af';
 
 
 **About the Code**

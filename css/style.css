@@ -22,10 +22,7 @@ body{
 }
 
 .logo {
-    /* display:flex;
-    justify-content:space-evenly; */
     width:300px;
-    /* align-items:center; */
     padding-top:1.25rem;
     padding-left:2.5rem;
     font-size:16px;

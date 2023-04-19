@@ -1,5 +1,5 @@
 const search = document.getElementById('search-box');
-const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
+const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
 const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
 

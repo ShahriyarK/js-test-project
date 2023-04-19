@@ -85,7 +85,7 @@ form input:focus-visible{
     display:none;
     border:none;
     background-color:white;
-    font-size:18px;
+    font-size:20px;
     margin-left:25px;
     font-weight:500;
 }
@@ -143,7 +143,6 @@ form input:focus-visible{
     padding:0px 10px;
     font-size:16px;
     color:rgb(62, 60, 60);
-    box-sizing:content-box;
     line-height: 1.2;
     margin-bottom:10px;
     text-align:justify;
@@ -189,9 +188,6 @@ form input:focus-visible{
 /*-----------RECIPE DETAILS SECTION-------------*/
 .recipe-details{
     display:none;
-}
-
-.recipe-details{
     padding: 20px 50px;
     text-align:justify;
     color:rgb(62, 60, 60);

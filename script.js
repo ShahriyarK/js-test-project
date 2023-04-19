@@ -18,6 +18,7 @@ fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`)
 let resultsArray;
 form.addEventListener('submit', (event)=>{
     resultsArray = [];
+    document.getElementById('back-btn').style.display ='none';
     document.querySelector('.recipe-details').style.display = 'none';
     document.querySelector('.card-container').style.display = 'flex';
     document.querySelector('.search-title').style.display = 'block';

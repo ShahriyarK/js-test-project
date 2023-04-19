@@ -1,4 +1,4 @@
-@media screen and (max-width:768px) {
+  @media screen and (max-width:768px) {
     html{
         font-size:12px;
     }
@@ -7,17 +7,21 @@
         align-items:center;
         justify-content:center;
     }
-    .card{
-        width:300px;
-    }
     .logo{
         padding-left: 0;
         margin-bottom:10px;
     }
+
+    #home-link{
+        justify-content:center;
+        width:100%;
+    }
+
     form{
         align-self:center;
         width:100%;
     }
+
     form input{
         width:80%;
         padding: 2px 4px;
@@ -26,35 +30,48 @@
     font-size:15px;
     text-align:center;
     }
-    #home-link{
-        justify-content:center;
-        width:100%;
-    }
+
     .search-div{
         flex-wrap:wrap;
     }
+    .card{
+        width:300px;
+    }
+
     .search-title{
         font-size:2rem;
     }
-    /*--------Recipe Info Page---*/
     #back-btn {
         margin-left:0px;
         flex-basis:100%;
         margin-top: 10px;
     }
+
+    /*--------Recipe Info Page---*/
     .recipe-details img{
         width:70%;
     }
+
     .recipe-details p{
         font-size:1.25rem;
     }
 }
 
 @media screen and (max-width:992px) and (min-width:769px){
+    .logo{
+        padding-left: 18px;
+    }
+
+    form input{
+        width:80%;
+        padding: 2px 4px;
+    }
+
     .search-div{
         flex-wrap:wrap;
         padding-top:10px;
     }
+
     #back-btn {
         margin-left:0px;
         flex-basis:100%;
@@ -63,13 +80,7 @@
     .search-title{
         margin-top: 10px;
     }
-    form input{
-        width:80%;
-        padding: 2px 4px;
-    }
-    .logo{
-        padding-left: 18px;
-    }
+
     .card{
         width:300px;
     }

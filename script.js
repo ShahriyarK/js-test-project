@@ -1,28 +1,5 @@
-// The recipe app should fetch recipes and displays them as cards on a web page
-// Features:
-        // Users searches by recipe name.
-        // The app fetches the recipe and display it in a card
-        // Each card displays recipe name, ingredients and image
-        // Users can click on a recipe card to view the full recipe and its instructions.
-
-
-
-// ----------PENDING STUFF PENDING STUFF PENDING STUFF---------
-// 1. Add caching to additional information as well
-// 2. Add decent styling and make responsive
-// 3. Add random recipes on start
-// 4. Add error handling (DONE)
-// 5. Try storing data in only one key value pair in local storage. The value could be an object or list of objects with key name
-// same as the name of the query
-// 6. Maybe try to limit 3 cards in one row.
-
-
 const search = document.getElementById('search-box');
-// const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
-// const apiKey = '03c16dff40a94fb38083740aae95e62e';
-// const apiKey = '5618568abf454ca5994063601ebc4ba2';
-// const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
-const apiKey = '19088892fbf842ec94bf493e139bb3af';
+const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
 const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
 

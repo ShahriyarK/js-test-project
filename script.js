@@ -19,10 +19,10 @@
 
 const search = document.getElementById('search-box');
 // const apiKey = '2c59ff1b45ea4c959f7af539f664e8e7';
-const apiKey = '03c16dff40a94fb38083740aae95e62e';
+// const apiKey = '03c16dff40a94fb38083740aae95e62e';
 // const apiKey = '5618568abf454ca5994063601ebc4ba2';
 // const apiKey = '861f6306dc7b4b6aa5a0a457bfe0e967';
-// const apiKey = '19088892fbf842ec94bf493e139bb3af';
+const apiKey = '19088892fbf842ec94bf493e139bb3af';
 const cardBox = document.querySelector('.card-container');
 const form = document.querySelector('form');
 
@@ -34,7 +34,7 @@ fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`)
 })
 .then(data => data.recipes)
 .then(array => {
-    document.querySelector('.search-title').innerText = `Popular Recipes`
+    document.querySelector('.search-title').innerText = `Popular Recipes`;
     let ingredients = [];
     array.forEach(element => {
         let ingrPara = addCards(element);
@@ -47,8 +47,10 @@ fetch(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=6`)
 
 form.addEventListener('submit', (event)=>{
     resultsArray = [];
-        document.querySelector('.recipe-details').style.display = 'none';
-        document.querySelector('.card-container').style.display = 'flex';
+    document.querySelector('.recipe-details').style.display = 'none';
+    document.querySelector('.card-container').style.display = 'flex';
+    document.querySelector('.search-title').style.display = 'block';
+    document.querySelector('#recipe-info-title').style.display = 'none';
     event.preventDefault();
     // document.querySelector('form h1').style.display = 'none';
     // document.querySelector('form p').style.display = 'none';
@@ -79,7 +81,7 @@ form.addEventListener('submit', (event)=>{
         .then(array => {
             console.log('BOOOO')
             let count = array.length;
-            document.querySelector('.search-title').innerText = `${query} (${count} results)`
+            document.querySelector('.search-title').innerText = `${query} (${count} result(s))`
             array.forEach(element => {
                 let ingrPara = addCards(element);
                 let recipeId = element.id;
@@ -120,11 +122,14 @@ function showRecipe(event) {
     let paraTitle = headIngr.previousElementSibling;
     let cardDiv = elm.parentElement;
     let recipeId = cardDiv.getAttribute('value');
+    document.querySelector('.search-title').style.display = 'none';
     document.getElementById('back-btn').style.display = 'block';
     document.getElementById('back-btn').addEventListener('click', () => {
         cardBox.style.display = 'flex';
+        document.getElementById('back-btn').style.display = 'none';
         document.querySelector('.recipe-details').style.display = 'none';
-        document.querySelector('.search-title').innerText = search.value;
+        document.querySelector('#recipe-info-title').style.display = 'none'
+        document.querySelector('.search-title').style.display = 'block';
     })
     fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`)
     .then(response => {
@@ -139,8 +144,9 @@ function showRecipe(event) {
         document.querySelector('.recipe-details img').setAttribute('src',data.image);
         document.getElementById('instructions').innerHTML = data.instructions;
         document.getElementById('ingredients').innerText = paraIngr.innerText;
+        document.querySelector('#recipe-info-title').style.display = 'block';
         // document.getElementById('title').innerText = paraTitle.innerText;
-        document.querySelector('.search-title').innerText = paraTitle.innerText;
+        document.querySelector('#recipe-info-title').innerText = paraTitle.innerText;
     })
 }
 
